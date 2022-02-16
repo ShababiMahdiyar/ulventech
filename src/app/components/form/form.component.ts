@@ -56,6 +56,7 @@ export class FormComponent {
 
   showModal(): void {
     this.modalService.create({
+      nzMaskClosable: false,
       nzClosable: false,
       nzTitle: 'Hello ' + '<b>' + this.validateForm.value.name + '</b>',
       nzContent: ResponseModalComponent,
@@ -64,8 +65,6 @@ export class FormComponent {
       }
     });
   }
-
-
 
   handleCancel(): void {
     this.isVisible = false;
