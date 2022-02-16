@@ -1,0 +1,57 @@
+<div>
+    <ng-container *ngIf="response.status === true; else error">
+        <ng-container *ngIf="restaurant$ | async as item; else loading">
+            <nz-card nzTitle="Top 10 Used Words">
+                <nz-descriptions nzTitle="Paragraph Fetched from fake API" [nzColon]="false">
+                    <nz-descriptions-item>
+                        {{paragraph}}
+                    </nz-descriptions-item>
+                </nz-descriptions>
+                <nz-table #basicTable [nzFrontPagination]="false" [nzData]="top10">
+                    <thead>
+                        <tr>
+                            <th>No.</th>
+                            <th>Word</th>
+                            <th>Repeated</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let data of basicTable.data; index as i">
+                            <td>{{i+1}}</td>
+                            <td>{{ data.word }}</td>
+                            <td>{{ data.count }}</td>
+                        </tr>
+                    </tbody>
+                </nz-table>
+            </nz-card>
+            <div *nzModalFooter>
+                <button nz-button nzType="primary" (click)="destroyModal()">Done!</button>
+            </div>
+        </ng-container>
+        <ng-template #loading>
+            <div class="spinner">
+                <h2>Please Wait ...</h2>
+                <nz-spin nzSimple [nzSize]="'large'"></nz-spin>
+            </div>
+        </ng-template>
+    </ng-container>
+    <ng-template #error>
+        <nz-result nzTitle="Error while fetching the data" nzStatus="error"
+            nzSubTitle="Sorry, the request has not been successful, kindly try again in a while.">
+            <div nz-result-content>
+                <div class="desc">
+                    <h4 nz-title>Here is why the request was unsuccessful:</h4>
+                    <p nz-paragraph>
+                        <i nz-icon nzType="close-circle"></i>
+                        {{response.message}}
+                    </p>
+                </div>
+            </div>
+        </nz-result>
+        <div *nzModalFooter>
+            <button nz-button nzType="primary" (click)="destroyModal()">Reset</button>
+            <button nz-button nzType="primary" (click)="handleCancel()">Try Again</button>
+        </div>
+    </ng-template>
+    
+</div>
