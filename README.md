@@ -11,7 +11,7 @@ How to run:
 #2 Run "npm install" or "npm i"
 #3 Run "ng serve" or "ng s"
 
-Recommendation: It is suggested that you use the latest satable version of Node and angular/cli for better compatibility.
+Recommendation: It is suggested that you use the latest stable version of Node and angular/cli for better compatibility.
 
 
 # UlventechTask
